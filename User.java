@@ -1,19 +1,25 @@
 public class User {
 
     private int userId;
-    private String name;
+    private String userName;
 
-    public User(int userId, String name) {
-
+    public User(int userId, String userName) {
         this.userId = userId;
-        this.name = name;
+        this.userName = userName;
     }
 
     public int getUserId() {
         return userId;
     }
 
-    public String getName() {
-        return name;
+    public String getUserName() {
+        return userName;
+    }
+
+    @Override
+    public String toString() {
+
+        return "\nUser ID   : " + userId +
+               "\nUser Name : " + userName;
     }
 }

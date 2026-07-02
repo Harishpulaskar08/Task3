@@ -35,9 +35,9 @@ public class Book {
     @Override
     public String toString() {
 
-        return "Book ID : " + bookId +
-                "\nTitle   : " + title +
-                "\nAuthor  : " + author +
-                "\nStatus  : " + (issued ? "Issued" : "Available");
+        return "\nBook ID : " + bookId +
+               "\nTitle   : " + title +
+               "\nAuthor  : " + author +
+               "\nStatus  : " + (issued ? "Issued" : "Available");
     }
 }

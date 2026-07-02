@@ -7,20 +7,20 @@ public class Main {
 
         Scanner sc = new Scanner(System.in);
 
-        Library library = new Library();
+        // Runtime Polymorphism
+        LibraryOperations library = new Library();
 
         while (true) {
 
-            System.out.println("\n=================================");
+            System.out.println("\n====================================");
             System.out.println("     Library Management System");
-            System.out.println("=================================");
+            System.out.println("====================================");
             System.out.println("1. Add Book");
             System.out.println("2. View Books");
             System.out.println("3. Search Book");
             System.out.println("4. Issue Book");
             System.out.println("5. Return Book");
             System.out.println("6. Exit");
-
             System.out.print("Enter your choice: ");
 
             try {
@@ -32,40 +32,49 @@ public class Main {
                     case 1:
 
                         System.out.print("Enter Book ID: ");
-                        int id = sc.nextInt();
+                        int bookId = sc.nextInt();
 
                         sc.nextLine();
 
                         System.out.print("Enter Book Title: ");
                         String title = sc.nextLine();
 
+                        if (title.trim().isEmpty()) {
+                            System.out.println("Book title cannot be empty.");
+                            break;
+                        }
+
                         System.out.print("Enter Author Name: ");
                         String author = sc.nextLine();
 
-                        library.addBook(new Book(id, title, author));
+                        if (author.trim().isEmpty()) {
+                            System.out.println("Author name cannot be empty.");
+                            break;
+                        }
+
+                        library.addBook(new Book(bookId, title, author));
 
                         break;
 
                     case 2:
 
                         library.viewBooks();
+
                         break;
 
                     case 3:
 
                         System.out.print("Enter Book ID: ");
-                        id = sc.nextInt();
+                        bookId = sc.nextInt();
 
-                        library.searchBook(id);
+                        library.searchBook(bookId);
 
                         break;
 
                     case 4:
 
                         System.out.print("Enter Book ID: ");
-                        id = sc.nextInt();
-
-                        sc.nextLine();
+                        bookId = sc.nextInt();
 
                         System.out.print("Enter User ID: ");
                         int userId = sc.nextInt();
@@ -77,16 +86,16 @@ public class Main {
 
                         User user = new User(userId, userName);
 
-                        library.issueBook(id, user);
+                        library.issueBook(bookId, user);
 
                         break;
 
                     case 5:
 
                         System.out.print("Enter Book ID: ");
-                        id = sc.nextInt();
+                        bookId = sc.nextInt();
 
-                        library.returnBook(id);
+                        library.returnBook(bookId);
 
                         break;
 
@@ -104,7 +113,7 @@ public class Main {
 
             } catch (InputMismatchException e) {
 
-                System.out.println("Invalid Input.");
+                System.out.println("Invalid Input! Please enter the correct data.");
 
                 sc.nextLine();
             }

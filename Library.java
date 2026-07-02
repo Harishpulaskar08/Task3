@@ -1,13 +1,14 @@
 import java.util.ArrayList;
 
-public class Library {
+public class Library extends LibraryOperations {
 
     private ArrayList<Book> books = new ArrayList<>();
 
     // Add Book
+    @Override
     public void addBook(Book book) {
 
-        if (findBook(book.getBookId()) != null) {
+        if (findBookById(book.getBookId()) != null) {
             System.out.println("Book ID already exists.");
             return;
         }
@@ -17,6 +18,7 @@ public class Library {
     }
 
     // View Books
+    @Override
     public void viewBooks() {
 
         if (books.isEmpty()) {
@@ -36,9 +38,10 @@ public class Library {
     }
 
     // Search Book
-    public void searchBook(int id) {
+    @Override
+    public void searchBook(int bookId) {
 
-        Book book = findBook(id);
+        Book book = findBookById(bookId);
 
         if (book == null) {
             System.out.println("Book not found.");
@@ -46,15 +49,16 @@ public class Library {
         }
 
         System.out.println("\nBook Found");
-        System.out.println("------------------------------");
+        System.out.println("----------------------------");
         System.out.println(book);
-        System.out.println("------------------------------");
+        System.out.println("----------------------------");
     }
 
     // Issue Book
-    public void issueBook(int id, User user) {
+    @Override
+    public void issueBook(int bookId, User user) {
 
-        Book book = findBook(id);
+        Book book = findBookById(bookId);
 
         if (book == null) {
             System.out.println("Book not found.");
@@ -68,13 +72,15 @@ public class Library {
 
         book.setIssued(true);
 
-        System.out.println("Book issued successfully to " + user.getName());
+        System.out.println("Book issued successfully.");
+        System.out.println("Issued To : " + user.getUserName());
     }
 
     // Return Book
-    public void returnBook(int id) {
+    @Override
+    public void returnBook(int bookId) {
 
-        Book book = findBook(id);
+        Book book = findBookById(bookId);
 
         if (book == null) {
             System.out.println("Book not found.");
@@ -92,11 +98,11 @@ public class Library {
     }
 
     // Helper Method
-    private Book findBook(int id) {
+    private Book findBookById(int bookId) {
 
         for (Book book : books) {
 
-            if (book.getBookId() == id) {
+            if (book.getBookId() == bookId) {
                 return book;
             }
         }
